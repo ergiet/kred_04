@@ -3,25 +3,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kredyt</title>
 </h:head>
 <h:body>
 
-	<h1>Kalkulator kredytowy</h1>
+<style type = "text/css"> 	body {background-image: url("background.jpg");   background-size: cover}</style>
 
 	<h:form id="bla">
-  		Kwota: <h:inputText value="#{kredBB.amount}" />
-		<br />
-  		Okres (w latach): <h:inputText value="#{kredBB.years}" />
-		<br />
-  		Procent: <h:inputText value="#{kredBB.percentage}" />
-		<br />
-		<h:messages id="msg" />
 
-		<h:commandButton value="Dodaj" action="#{kredBB.calc()}"/>
-	</h:form>
+			<p:panel header="Kalkulator kredytowy" toggleable="true" closable="false" widgetVar="panel">
 
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<p:outputLabel for="amount" value="Kwota:" />
+					<p:inputText id="amount" value="#{kredBB.amount}" required="true" requiredMessage="Nie podano kwoty" />
+					<p:message for="amount" />
+					
+					<p:outputLabel for="years" value="Okres:" />
+					<p:inputText id="years" value="#{kredBB.years}" required="true" requiredMessage="Nie podano na ile lat" />
+					<p:message for="years" />
+					
+					<p:outputLabel for="percentage" value="Oprocentowanie:" />
+					<p:inputText id="percentage" value="#{kredBB.percentage}" required="true" requiredMessage="Nie podano oprocentowania" />
+					<p:message for="percentage" />
+
+					<p:commandButton value="Oblicz ratę" action="#{kredBB.calc()}" update="@form" />
+
+				</h:panelGrid>
+			</p:panel>
+			
+		</h:form>
 </h:body>
 </html>

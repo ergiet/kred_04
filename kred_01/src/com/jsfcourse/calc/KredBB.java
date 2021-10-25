@@ -64,7 +64,7 @@ public class KredBB {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Wyliczono miesiêczn¹ ratê kredytu", null));
 			return true;
 		} catch (Exception e) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d podczas przetwarzania parametrów", null));
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wyliczono miesiêczn¹ ratê kredytu", null));
 			return false;
 		}
 	}

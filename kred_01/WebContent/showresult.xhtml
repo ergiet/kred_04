@@ -3,15 +3,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kredyt</title>
 </h:head>
 <h:body>
-	<h:messages />
-	Miesięczna rata: #{kredBB.result}
-	<h:form>
-		<h:commandButton value="Powrót" action="index" />
-	</h:form>
+	<p:panel header="Kalkulator kredytowy - Miesięczna rata"
+		toggleable="true" closable="false" widgetVar="panel">
+		<h:panelGrid id="grid" columns="1" cellpadding="5">
+			<p:messages />
+				Miesięczna rata: #{kredBB.result}
+			<h:form>
+				<p:commandButton value="Powrót" action="index" />
+			</h:form>
+		</h:panelGrid>
+	</p:panel>
 </h:body>
 </html>
