@@ -5,12 +5,10 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Kredyt</title>
-</h:head>
-<h:body>
+	
+	<ui:composition template="/templates/page-template.xhtml">
 
-<style type = "text/css"> 	body {background-image: url("background.jpg");   background-size: cover}</style>
+	<ui:define name="pageContent">
 
 	<h:form id="bla">
 
@@ -19,15 +17,27 @@
 				<h:panelGrid id="grid" columns="3" cellpadding="5">
 
 					<p:outputLabel for="amount" value="Kwota:" />
-					<p:inputText id="amount" value="#{kredBB.amount}" required="true" requiredMessage="Nie podano kwoty" />
+						<p:inputText id="amount" value="#{kredBB.amount}" required="true" requiredMessage="Nie podano kwoty"
+		                    converterMessage="Błędny typ danych"
+		                    validatorMessage="Wartość musi być z zakresu 10-100 tysięcy">
+		                    	<f:validateDoubleRange minimum="10000" maximum="100000"/>
+						</p:inputText>
 					<p:message for="amount" />
 					
 					<p:outputLabel for="years" value="Okres:" />
-					<p:inputText id="years" value="#{kredBB.years}" required="true" requiredMessage="Nie podano na ile lat" />
+					<p:inputText id="years" value="#{kredBB.years}" required="true" requiredMessage="Nie podano na ile lat"
+	                    converterMessage="Błędny typ danych"
+	                    validatorMessage="Kredyt może zostać przyznany na maksymalnie 10 lat">
+                    		<f:validateDoubleRange maximum="10"/>
+					</p:inputText>
 					<p:message for="years" />
 					
 					<p:outputLabel for="percentage" value="Oprocentowanie:" />
-					<p:inputText id="percentage" value="#{kredBB.percentage}" required="true" requiredMessage="Nie podano oprocentowania" />
+					<p:inputText id="percentage" value="#{kredBB.percentage}" required="true" requiredMessage="Nie podano oprocentowania"
+	                    converterMessage="Błędny typ danych"
+	                    validatorMessage="Oprocentowanie może wynosić maksymalnie 40%">
+                    		<f:validateDoubleRange maximum="40"/>
+					</p:inputText>
 					<p:message for="percentage" />
 
 					<p:commandButton value="Oblicz ratę" action="#{kredBB.calc()}" update="@form" />
@@ -36,5 +46,7 @@
 			</p:panel>
 			
 		</h:form>
-</h:body>
+			</ui:define>
+
+</ui:composition>
 </html>

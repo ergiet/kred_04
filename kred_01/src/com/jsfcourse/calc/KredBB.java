@@ -11,35 +11,35 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredBB {
-	private String amount;
-	private String years;
-	private String percentage;
+	private Double amount;
+	private Double years;
+	private Double percentage;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
-	public String getYears() {
+	public Double getYears() {
 		return years;
 	}
 
-	public void setYears(String years) {
+	public void setYears(Double years) {
 		this.years = years;
 	}
 	
-	public String getPercentage() {
+	public Double getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(String percentage) {
+	public void setPercentage(Double percentage) {
 		this.percentage = percentage;
 	}
 
@@ -53,10 +53,6 @@ public class KredBB {
 
 	public boolean doTheMath() {
 		try {
-			double amount = Double.parseDouble(this.amount);
-			double years = Double.parseDouble(this.years);
-			double percentage = Double.parseDouble(this.percentage);
-
 			result = amount/(years*12) + (amount/(years*12))*percentage/100;
 			
 			result = Math.round(result * 100.0)/100.0;
